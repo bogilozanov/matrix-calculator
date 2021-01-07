@@ -1,0 +1,6 @@
+1. Multiplication of a matrix by a scalar
+2. Multiplication of a matrix by a matrix
+3. Finding the determinant of a matrix with dimensions up to 4x4
+4. Division of a matrix by scalar
+5. Finding the inverse matrix with dimensions up to 4x4
+6. Matrix transposition
