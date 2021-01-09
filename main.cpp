@@ -286,28 +286,25 @@ void chooseOperation(int &operationNumber)
   double **matrix;
   double **secondMatrix;
 
-  if (operationNumber == 1)
+  switch (operationNumber)
   {
+  case 1:
     multiplyMatrixByScalar(rows, cols, scalar, matrix, true);
-  }
-  else if (operationNumber == 2)
-  {
+    break;
+  case 2:
     multiplyMatrixByMatrix(rows, cols, secondRows, secondCols, matrix, secondMatrix);
-  }
-  else if (operationNumber == 3)
-  {
+    break;
+  case 3:
     findTheDeterminant(rows, matrix);
-  }
-  else if (operationNumber == 4)
-  {
+    break;
+  case 4:
     multiplyMatrixByScalar(rows, cols, scalar, matrix, false);
-  }
-  else if (operationNumber == 5)
-  {
+    break;
+  case 5:
     findTheInverseMatrix();
-  }
-  else if (operationNumber == 6)
-  {
+    break;
+  case 6:
     matrixTransposition(rows, cols, matrix, secondMatrix);
+    break;
   }
 }
