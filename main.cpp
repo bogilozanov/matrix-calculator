@@ -18,10 +18,9 @@
 using namespace std;
 
 void chooseOperation(int &operationNumber);
-void multiplyMatrixByScalar(int &rows, int &cols, int &scalar, double **matrix);
+void multiplyMatrixByScalar(int &rows, int &cols, double &scalar, double **matrix, bool isMultiplication);
 void multiplyMatrixByMatrix(int &rows, int &cols, int &secondRows, int &secondCols, double **matrix, double **secondMatrix);
 void findTheDeterminant(int &rows, double **matrix);
-void divideMatrixByScalar();
 void findTheInverseMatrix();
 void matrixTransposition();
 void inputValueGreaterThanZero(int &number);
@@ -114,11 +113,20 @@ void inputValueBetween2and4(int &number)
   cout << endl;
 }
 
-void multiplyMatrixByScalar(int &rows, int &cols, int &scalar, double **matrix)
+void multiplyMatrixByScalar(int &rows, int &cols, double &scalar, double **matrix, bool isMultiplication)
 {
   cout << "Input scalar: ";
   cin >> scalar;
   cout << endl;
+  if (isMultiplication == false)
+  {
+    while (scalar == 0)
+    {
+      cout << "You can't divide by 0, input again: ";
+      cin >> scalar;
+    }
+    scalar = 1.0 / scalar;
+  }
   cout << "Input matrix rows: ";
   inputValueGreaterThanZero(rows);
   cout << "Input matrix columns: ";
@@ -229,9 +237,6 @@ void findTheDeterminant(int &rows, double **matrix)
   delete[] matrix;
 }
 
-void divideMatrixByScalar()
-{
-}
 
 void findTheInverseMatrix()
 {
@@ -243,13 +248,14 @@ void matrixTransposition()
 
 void chooseOperation(int &operationNumber)
 {
-  int rows, cols, scalar, secondRows, secondCols;
+  int rows, cols, secondRows, secondCols;
+  double scalar;
   double **matrix;
   double **secondMatrix;
 
   if (operationNumber == 1)
   {
-    multiplyMatrixByScalar(rows, cols, scalar, matrix);
+    multiplyMatrixByScalar(rows, cols, scalar, matrix, true);
   }
   else if (operationNumber == 2)
   {
@@ -261,7 +267,7 @@ void chooseOperation(int &operationNumber)
   }
   else if (operationNumber == 4)
   {
-    divideMatrixByScalar();
+    multiplyMatrixByScalar(rows, cols, scalar, matrix, false);
   }
   else if (operationNumber == 5)
   {
