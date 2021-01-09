@@ -22,7 +22,7 @@ void multiplyMatrixByScalar(int &rows, int &cols, double &scalar, double **matri
 void multiplyMatrixByMatrix(int &rows, int &cols, int &secondRows, int &secondCols, double **matrix, double **secondMatrix);
 void findTheDeterminant(int &rows, double **matrix);
 void findTheInverseMatrix();
-void matrixTransposition();
+void matrixTransposition(int &rows, int &cols, double **matrix, double **secondMatrix);
 void inputValueGreaterThanZero(int &number);
 double **inputMatrix(int &rows, int &cols);
 void printMatrix(double **matrix, int &rows, int &cols);
@@ -118,6 +118,8 @@ void multiplyMatrixByScalar(int &rows, int &cols, double &scalar, double **matri
   cout << "Input scalar: ";
   cin >> scalar;
   cout << endl;
+
+  // Check if the operation is division
   if (isMultiplication == false)
   {
     while (scalar == 0)
@@ -237,13 +239,44 @@ void findTheDeterminant(int &rows, double **matrix)
   delete[] matrix;
 }
 
-
 void findTheInverseMatrix()
 {
 }
 
-void matrixTransposition()
+void matrixTransposition(int &rows, int &cols, double **matrix, double **secondMatrix)
 {
+  cout << "Input matrix rows: ";
+  inputValueGreaterThanZero(rows);
+  cout << "Input matrix columns: ";
+  inputValueGreaterThanZero(cols);
+  cout << "Input matrix values:\n";
+  matrix = inputMatrix(rows, cols);
+
+  // initializing the transposition matrix
+  secondMatrix = new double *[cols];
+  for (int i = 0; i < cols; i++)
+  {
+    secondMatrix[i] = new double[rows];
+
+    for (int j = 0; j < rows; j++)
+    {
+      secondMatrix[i][j] = matrix[j][i];
+    }
+  }
+
+  printMatrix(secondMatrix, cols, rows);
+
+  for (int i = 0; i < rows; i++)
+  {
+    delete[] matrix[i];
+  }
+  delete[] matrix;
+
+  for (int i = 0; i < cols; i++)
+  {
+    delete[] secondMatrix[i];
+  }
+  delete[] secondMatrix;
 }
 
 void chooseOperation(int &operationNumber)
@@ -275,6 +308,6 @@ void chooseOperation(int &operationNumber)
   }
   else if (operationNumber == 6)
   {
-    matrixTransposition();
+    matrixTransposition(rows, cols, matrix, secondMatrix);
   }
 }
