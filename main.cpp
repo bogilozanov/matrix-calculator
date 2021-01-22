@@ -43,6 +43,7 @@ int main()
   cout << "Operation: ";
   cin >> operationNumber;
   cout << endl;
+  cout << "TEST";
   if (operationNumber > 6 || operationNumber < 0)
   {
     cout << "Not valid operation number!";
